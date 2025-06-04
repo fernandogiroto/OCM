@@ -13,7 +13,7 @@ This repository contains the solution for a full-stack technical challenge, whic
 
 ```
 
-├── backend/ # API built with Laravel 9 (PHP)
+├── backend/ # API built with Laravel (PHP)
 ├── frontend/ # Web interface built with Vue 3 (JavaScript)
 ```
 
@@ -23,14 +23,13 @@ This repository contains the solution for a full-stack technical challenge, whic
 
 ## 🧰 Technologies Used
 
-### Backend – Laravel 9  
+### Backend – Laravel  
 - Language: PHP 8.x  
 - Framework: Laravel 9  
 - Database: MySQL  
 - Dependency Manager: Composer  
 - Auxiliary Tools:  
   - Eloquent ORM  
-  - Laravel Artisan  
   - Laravel HTTP Client (to consume external API)  
 
 ### Frontend – Vue 3  
@@ -40,10 +39,65 @@ This repository contains the solution for a full-stack technical challenge, whic
 - Package Manager: NPM  
 - Auxiliary Tools:  
   - Axios (to consume the Laravel API)  
-  - Vue Router (if needed)  
   - Reactive dynamic components  
 
 ---
+
+## 🚀 How to Run the Project
+
+### Backend (Laravel)
+
+1. Open your terminal and navigate to the backend folder:
+
+```bash
+cd backend
+```
+2. Install PHP dependencies with Composer:
+```bash
+composer install
+```
+3. Create a MySQL database for the project.
+4. Configure your .env file (copy .env.example if needed) and set your database credentials:
+```bash
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+```
+5. Run migrations to create the database tables:
+```bash
+php artisan migrate
+```
+6. Seed the database with initial data fetched from the external API:
+```bash
+php artisan db:seed
+```
+7. Start the Laravel development server:
+```bash
+php artisan db:serve
+```
+The backend API will be available at http://localhost:8000 (or another port if specified).
+Note: If the URL provided by php artisan serve is different from http://localhost:8000,
+make sure to update the backend API URL in your frontend .env file accordingly (e.g., VITE_API_BASE_URL=http://localhost:PORT/api).
+
+## 🚀 How to Run the Project
+
+### Frontend (Vue.JS)
+
+1. Open your terminal and navigate to the frontend folder:
+```bash
+cd frontend
+```
+2. Install Node.js dependencies:
+```bash
+npm install
+```
+3. Run the development server:
+```bash
+npm run dev
+```
+The frontend app will be available at http://localhost:5173/ (or the URL shown in your terminal).
+
+
 
 ## Delivered Features
 
