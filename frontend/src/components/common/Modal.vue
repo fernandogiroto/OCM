@@ -3,7 +3,7 @@
     <div class="backdrop" v-if="isOpenModal" @click="toggleModal"></div>
     <div class="modal" v-if="isOpenModal">
       <div class="modal__content bottom-to-top--effect" v-show="isOpenModal">
-        <slot name="content"></slot>
+        <slot name="content" />
       </div>
     </div>
   </Teleport>
@@ -49,6 +49,7 @@
     @include mixings.flexbox(column, center, center);
     width: 100%;
     height: 100%;
+    padding: 20px;
     position: absolute;
     &__content {
       width: v-bind(width);
