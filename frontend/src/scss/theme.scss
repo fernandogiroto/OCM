@@ -42,7 +42,7 @@ main {
 .container {
   @include mixings.flexbox(column, initial, initial);
   gap: 20px;
-  padding: 40px;
+  padding: 20px;
   height: 100%;
   width: 100%;
   @include mixings.scrollbar-none();
