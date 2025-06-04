@@ -2,13 +2,13 @@ import api from '@/services/api'
 
 export const fetchUsers = async (search = '') => {
   try {
-    const res = await api.get('/users', {
-      params: { search }
-    })
+    const params = search ? { search } : {}
 
-    return res.data
+    const res = await api.get('/users', { params })
+
+    return res.data.data
   } catch (err) {
-    console.error('Erro ao buscar usuários:', err)
+    console.error('Error to search users:', err)
     throw err
   }
 }

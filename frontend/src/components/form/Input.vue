@@ -29,7 +29,7 @@
         }
     })
   
-    const emit = defineEmits(['debounced-input'])
+    const emit = defineEmits(['debounce'])
 
     let debounceTimer = null
 
@@ -37,7 +37,7 @@
         const value = event.target.value
         clearTimeout(debounceTimer)
         debounceTimer = setTimeout(() => {
-            emit('debounced-input', value)
+            emit('debounce', value)
         }, props.inputDebounce)
     }
 
@@ -61,7 +61,7 @@
             font-size: 16px;
             transition: border-color 0.3s;
             &:focus {
-                border-color: #007bff;
+                border-color: var(--primary-color);
                 outline: none;
             }
         }

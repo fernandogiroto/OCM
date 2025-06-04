@@ -2,15 +2,15 @@
   <div class="home-view">
     <div class="home-view__filters">
       <Input 
-        @debounced-input="filterText = $event"
+        @debounce="filterText = $event"
         label="Filter by frontend" 
-        placeholder="Filter Users"
+        placeholder="Filter Users (FRONT)"
         inputWidth="300px"  
       />
       <Input 
-        @debounced-input="filterText = $event"
+        @debounce="backendSearch = $event"
         label="Filter by backend" 
-        placeholder="Filter Users"
+        placeholder="Search Users (API)"
         inputWidth="300px"  
       />
     </div>
@@ -52,7 +52,7 @@
 
 <script setup>
 
-  import { ref, onMounted, computed } from 'vue'
+  import { ref, onMounted, computed, watch } from 'vue'
   import { fetchUsers } from '@/services/userService'
 
   import Table from '@/components/Table.vue'
@@ -66,9 +66,9 @@
   const titles = ['ID', 'Name', 'Username', 'Email', 'City'];
 
   const filterText = ref('');
+  const backendSearch = ref('')
   const isModalVisible = ref(false);
   const userDetail = ref(null);
-
 
   const filteredUsers = computed(() => {
     if (!filterText.value) return users.value
@@ -87,6 +87,17 @@
       isModalVisible.value = true;
     }
   }
+
+  watch(backendSearch, async (newValue) => {
+    try {
+      const data = await fetchUsers(newValue) 
+      users.value = data
+      usersData.value = data 
+    } catch (error) {
+      console.error('Error to fetch users:', error)
+    }
+  })
+
 
   onMounted(async () => {
     try {
