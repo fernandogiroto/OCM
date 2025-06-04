@@ -1,9 +1,9 @@
 <template>
-  <table border="1" cellpadding="8" cellspacing="0">
+  <table class="table" border="1" cellpadding="8" cellspacing="0" >
     <thead>
       <tr>
         <th v-for="(title, index) in titles" :key="index">{{ title }}</th>
-        <th v-if="actions">Actions</th>
+        <th v-if="actions" class="actions">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -11,14 +11,13 @@
         <td v-for="(title, colIndex) in titles" :key="colIndex">
           {{ item[title.toLowerCase()] }}
         </td>
-        <td v-if="actions">
-          <button
-            @click="$emit('action', item)"
-            style="background: none; border: none; cursor: pointer; color: #007bff;"
-            title="Ação"
-          >
-            ℹ️
-          </button>
+        <td v-if="actions" class="actions">
+          <button class="button__secondary" @click="$emit('action', item.id)">View More</button>
+        </td>
+      </tr>
+      <tr v-if="data.length === 0" >
+        <td :colspan="titles.length + (actions ? 1 : 0)" class="table__empty">
+          No data available
         </td>
       </tr>
     </tbody>
@@ -46,7 +45,7 @@
 
 <style lang="scss">
 
-  table {
+  .table {
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -67,6 +66,17 @@
       &:hover {
         background-color: var(--primary-color);
       }
+    }
+    th.actions {
+      text-align: center;
+    }
+    td.actions {
+      text-align: center;
+    }
+    td.table__empty {
+      text-align: center;
+      color: #666;
+      font-style: italic;
     }
   }
 

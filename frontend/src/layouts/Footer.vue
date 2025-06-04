@@ -1,10 +1,19 @@
 <template>
     <footer>
         <div class="footer-links">
-            <a href="https://www.linkedin.com/in/fernandogiroto/"  target="_blank" class="footer-links__label">@fernandogiroto</a>
+            <a href="https://www.linkedin.com/in/fernandogiroto/"  target="_blank" class="footer-links__label">
+              <IconBrandLinkedinFilled />
+              @fernandogiroto
+            </a>
         </div>
     </footer>
 </template>
+
+<script setup>
+
+  import { IconBrandLinkedinFilled } from '@tabler/icons-vue';
+
+</script>
     
 <style lang="scss">
 
@@ -21,6 +30,7 @@
       @include mixings.flexbox(row, center, center);
       gap: 10px;
       &__label {
+        @include mixings.flexbox(row, center, center);
         text-decoration: none;
         font-size: 14px;
       }
