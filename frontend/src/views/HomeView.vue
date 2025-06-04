@@ -15,7 +15,7 @@
       />
     </div>
     <div class="users-list">
-      <div class="user-list__table bottom-to-top--effect">
+      <div class="user-list__table">
         <Table
           :titles="titles"
           :data="filteredUsers"
@@ -42,8 +42,8 @@
           <span class="user-detail__item">{{userDetail.username}} </span>
           <span class="user-detail__item">{{userDetail.email}} </span>
           <span class="user-detail__item">{{userDetail.phone}} </span>
-          <span class="user-detail__item">{{userDetail.address.city}} </span>
-          <span class="user-detail__item">{{userDetail.company.name}} </span>
+          <span class="user-detail__item">{{userDetail.city}} </span>
+          <span class="user-detail__item">{{userDetail.company}} </span>
         </div>
       </template>
     </Modal>
@@ -53,6 +53,7 @@
 <script setup>
 
   import { ref, onMounted, computed } from 'vue'
+  import { fetchUsers } from '@/services/userService'
 
   import Table from '@/components/Table.vue'
   import Input from '@/components/form/Input.vue'
@@ -88,16 +89,13 @@
   }
 
   onMounted(async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    usersData.value = await res.json()
-
-    users.value = usersData.value.map(user => ({
-      id: user.id,
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      city: user.address.city
-    }))
+    try {
+      const data = await fetchUsers()
+      users.value = data
+      usersData.value = data
+    } catch (error) {
+      console.error('Error to load users:', error)
+    }
   })
 
 </script>
