@@ -79,7 +79,6 @@ The backend API will be available at http://localhost:8000 (or another port if s
 Note: If the URL provided by php artisan serve is different from http://localhost:8000,
 make sure to update the backend API URL in your frontend .env file accordingly (e.g., VITE_API_BASE_URL=http://localhost:PORT/api).
 
-## 🚀 How to Run the Project
 
 ### Frontend (Vue.JS)
 
